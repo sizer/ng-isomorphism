@@ -3,5 +3,126 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "ng-isomorphism-fe": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ng-isomorphism-fe",
+      "sourceRoot": "projects/ng-isomorphism-fe/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ng-isomorphism-fe",
+            "index": "projects/ng-isomorphism-fe/src/index.html",
+            "main": "projects/ng-isomorphism-fe/src/main.ts",
+            "polyfills": "projects/ng-isomorphism-fe/src/polyfills.ts",
+            "tsConfig": "projects/ng-isomorphism-fe/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ng-isomorphism-fe/src/favicon.ico",
+              "projects/ng-isomorphism-fe/src/assets"
+            ],
+            "styles": [
+              "projects/ng-isomorphism-fe/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ng-isomorphism-fe/src/environments/environment.ts",
+                  "with": "projects/ng-isomorphism-fe/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-isomorphism-fe:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-isomorphism-fe:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-isomorphism-fe:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-isomorphism-fe/src/test.ts",
+            "polyfills": "projects/ng-isomorphism-fe/src/polyfills.ts",
+            "tsConfig": "projects/ng-isomorphism-fe/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-isomorphism-fe/karma.conf.js",
+            "assets": [
+              "projects/ng-isomorphism-fe/src/favicon.ico",
+              "projects/ng-isomorphism-fe/src/assets"
+            ],
+            "styles": [
+              "projects/ng-isomorphism-fe/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-isomorphism-fe/tsconfig.app.json",
+              "projects/ng-isomorphism-fe/tsconfig.spec.json",
+              "projects/ng-isomorphism-fe/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ng-isomorphism-fe/e2e/protractor.conf.js",
+            "devServerTarget": "ng-isomorphism-fe:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-isomorphism-fe:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-isomorphism-fe"
 }

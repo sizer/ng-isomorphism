@@ -1,0 +1,8 @@
+{
+  "name": "ng-isomorphism",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sizer/ng-isomorphism",
+  "author": "sizer <shinse.tanaka@gmail.com>",
+  "license": "MIT"
+}

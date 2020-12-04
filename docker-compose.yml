@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: ng_isomorphism_db
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_DATABASE: development
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  db:

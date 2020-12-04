@@ -1,0 +1,15 @@
+header {
+  min-height: 30px;
+  background: #eee;
+  padding: 10px 25px;
+
+  .user {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+}

@@ -8,8 +8,8 @@ import { Todo } from './entities/todo.entity';
 export class TodoService {
   constructor(@Inject('TODO_REPOSITORY') private repo: Repository<Todo>) {}
 
-  create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+  create({ title }: CreateTodoDto) {
+    return this.repo.save([{ title, completed: false }]);
   }
 
   findAll(): Promise<Todo[]> {
@@ -20,8 +20,14 @@ export class TodoService {
     return `This action returns a #${id} todo`;
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
+  update(id: number, { title, completed }: UpdateTodoDto) {
+    return this.repo.findOne(id).then((aEntity) =>
+      this.repo.save({
+        id,
+        title,
+        completed,
+      }),
+    );
   }
 
   remove(id: number) {
